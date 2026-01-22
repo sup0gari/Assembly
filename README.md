@@ -17,6 +17,9 @@ AH.. 8bit
 Windows x64では最初の4つまでの引数はレジスタに入れて渡す性質がある。  
 `RCX`, `RDX`, `R8`, `R9`
 
+## Windowsにおけるアセンブリの関数からCへの戻り値
+rax
+
 ## 命令など
 ```bash
 sub rsp,30 # RSPから0x30(48)byte確保(減算)
@@ -57,3 +60,15 @@ Windows x64におけるスレッドごとの固有情報のポインタ。TEBと
 `gs:[0x10]` スタックの限界  
 `gs:[0x30]` TEB自身の開始アドレス  
 `gs:[0x60]` PEBのアドレス、ロードされているDLLのリスト
+
+## よく見る機械語
+```bash
+c3 # ret
+90 # nop
+e9 # jmp
+b8 # mov eax
+4c 8b d1 # mov r10,rcx
+0f 05 # syscall
+31 c0 # xor eax,eax
+48 83 ec # sub rsp
+```
